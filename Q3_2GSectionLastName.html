@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club/Organization Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        
+        fieldset {
+            border: 1px solid #000;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        legend {
+            font-weight: bold;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: blue;
+            outline: none;
+            background-color: #f0f0f0;
+        }
+        
+        .empty-field {
+            border-color: red !important;
+            background-color: #ffe6e6 !important;
+        }
+        
+        .radio-group {
+            margin-top: 5px;
+        }
+        
+        .radio-option {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Club/Organization Application</h1>
+    
+    <form id="clubForm" method="post" action="submit" onsubmit="return confirmSubmit()" onreset="return confirmReset()">
+        <!-- Fieldset for #1-4 -->
+        <fieldset>
+            <legend>Personal Information</legend>
+            
+            <div class="form-group">
+                <label for="studentId">
+                    1. StudentID *
+                </label>
+                <input type="text" id="studentId" name="studentId" required onblur="checkEmpty(this)">
+            </div>
+            
+            <div class="form-group">
+                <label for="fullName">
+                    2. Full Name *
+                </label>
+                <input type="text" id="fullName" name="fullName" required onblur="checkEmpty(this)">
+            </div>
+            
+            <div class="form-group">
+                <label for="birthday">
+                    3. Birthday *
+                </label>
+                <input type="date" id="birthday" name="birthday" required onblur="checkEmpty(this)">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">
+                    4. Email Address *
+                </label>
+                <input type="email" id="email" name="email" required onblur="checkEmpty(this)">
+            </div>
+        </fieldset>
+        
+        <!-- Fieldset for #5-8 -->
+        <fieldset>
+            <legend>Contact and Program Information</legend>
+            
+            <div class="form-group">
+                <label for="mobilePhone">
+                    5. Mobile Phone *
+                </label>
+                <input type="text" id="mobilePhone" name="mobilePhone" required onblur="checkEmpty(this)">
+            </div>
+            
+            <div class="form-group">
+                <label for="gradeLevel">
+                    6. Grade Level *
+                </label>
+                <select id="gradeLevel" name="gradeLevel" required onblur="checkEmpty(this)">
+                    <option value="" disabled selected>Select</option>
+                    <option value="g9">Grade 9</option>
+                    <option value="g10">Grade 10</option>
+                    <option value="g11">Grade 11</option>
+                    <option value="g12">Grade 12</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    7. Intern / Extern *
+                </label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="intern" name="internExtern" value="i" required>
+                        <label for="intern">Intern</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="extern" name="internExtern" value="e" required>
+                        <label for="extern">Extern</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="preferredOrg">
+                    8. Preferred Organization / Club *
+                </label>
+                <select id="preferredOrg" name="preferredOrg" required onblur="checkEmpty(this)">
+                    <option value="" disabled selected>Select</option>
+                    <option value="art">Art Club</option>
+                    <option value="sports">Sports Club</option>
+                    <option value="music">Music Club</option>
+                    <option value="science">Science Club</option>
+                    <option value="debate">Debate Club</option>
+                </select>
+            </div>
+        </fieldset>
+        
+        <!-- Textarea for #9 -->
+        <div class="form-group">
+            <label for="reason">
+                9. Why do you want to join? *
+            </label>
+            <textarea id="reason" name="reason" rows="4" required onblur="checkEmpty(this)"></textarea>
+        </div>
+        
+        <!-- Submit and Reset buttons -->
+        <div class="button-group">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+
+    <script>
+        function checkEmpty(element) {
+            if (element.value.trim() === "") {
+                element.classList.add("empty-field");
+            } else {
+                element.classList.remove("empty-field");
+            }
+        }
+        
+        function confirmSubmit() {
+            return confirm("Submit your application?");
+        }
+        
+        function confirmReset() {
+            return confirm("Reset the form? All data will be lost.");
+        }
+    </script>
+</body>
+</html>
